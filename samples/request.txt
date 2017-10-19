@@ -7,10 +7,11 @@
     "timestamp": "2017-02-09T16:06:01.908Z", 
     "sessionId": "1486656220806", 
     "result": {
-        "parameters": {
-            "city": "Rome", 
-            "name": "Ana"
-        }, 
+       "parameters": {
+            "value": [
+                 3920
+            ]
+        },
         "contexts": [], 
         "resolvedQuery": "my name is Ana and I live in Rome", 
         "source": "agent", 
@@ -26,11 +27,11 @@
             "speech": "Hi Ana! Nice to meet you!"
         }, 
         "actionIncomplete": false, 
-        "action": "greetings", 
+        "action": "CheckBalance", 
         "metadata": {
             "intentId": "9f41ef7c-82fa-42a7-9a30-49a93e2c14d0", 
             "webhookForSlotFillingUsed": "false", 
-            "intentName": "greetings", 
+            "intentName": "CheckBalance", 
             "webhookUsed": "true"
         }
     }, 
