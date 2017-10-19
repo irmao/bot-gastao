@@ -2,6 +2,9 @@
 """ Handles the request from delegates the required operation to the correct service """
 import json
 
+def extract_intent(request_json):
+    return request_json['result']['metadata']['intentName']
+
 def handle_request(plain_request_json):   
     request_json = json.loads(plain_request_json)
     print('Request json:', request_json)
@@ -10,10 +13,7 @@ def handle_request(plain_request_json):
     fsample = open('samples/response.txt', 'r') 
     response_json = ''.join(fsample.readlines())
     fsample.close()
-    return response_json
-
-def extract_intent(request_json):
-    return request_json['result']['metadata']['intentName']
+    return response_json.encode('utf-8')
 
 #----------- tests ---------------#
 def test_extract_intent():

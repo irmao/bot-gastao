@@ -16,7 +16,7 @@ def wsgi_app(environ, start_response):
         request_body_size = 0
     request_body = environ['wsgi.input'].read(request_body_size)
     response_body = RequestHandler.handle_request(request_body.decode('utf-8'))
-    yield response_body.encode('utf-8')
+    yield response_body
 
 
 if __name__ == '__main__':
