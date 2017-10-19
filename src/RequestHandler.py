@@ -1,25 +1,15 @@
 #!/usr/bin/python
 """ Handles the request from delegates the required operation to the correct service """
 import json
-
-def extract_intent(request_json):
-    return request_json['result']['metadata']['intentName']
+import src.IntentFunctions as IntentFunctions
 
 def handle_request(plain_request_json):   
     request_json = json.loads(plain_request_json)
-    print('Request json:', request_json)
-    requested_intent = extract_intent(request_json)
-    print ('Intent:', requested_intent)
-    fsample = open('samples/response.txt', 'r') 
-    response_json = ''.join(fsample.readlines())
+    fsample = open('samples/response_empty.txt', 'r') 
+    response_json = json.loads(''.join(fsample.readlines()))
     fsample.close()
-    return response_json.encode('utf-8')
-
-#----------- tests ---------------#
-def test_extract_intent():
-    fsample = open('samples/request.txt', 'r')
-    plain_request_json = ''.join(fsample.readlines())
-    fsample.close()
-    request_json = json.loads(plain_request_json)
-    intent = extract_intent(request_json)
-    assert intent == 'greetings'
+    requested_intent = IntentFunctions.extract_intent(request_json)
+    speech = IntentFunctions.get_speech(requested_intent, request_json)
+    response_json['speech'] = speech
+    response_json['displayText'] = speech
+    return json.dumps(response_json).encode('utf-8')
