@@ -16,7 +16,7 @@ def add_expense_fn(request_json):
     if value == 0:
         message = 'Me poupe! Isso não faz diferença nenhuma'
     elif value < 0:
-        message = 'Ok! Subtraí ' + str(-value) + 'reais do seu saldo'
+        message = 'Ok! Subtraí ' + str(-value) + ' reais do seu saldo'
     else:
         message = 'Ok! Adicionei ' + str(value) + ' reais no seu saldo'
     return message
