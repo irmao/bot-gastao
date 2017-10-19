@@ -1,34 +1,53 @@
-{
-  "id": "b340a1f7-abee-4e13-9bdd-5e8938a48b7d",
-  "timestamp": "2017-02-09T15:38:26.548Z",
-  "lang": "en",
-  "result": {
-    "source": "agent",
-    "resolvedQuery": "my name is Sam and I live in Paris",
-    "action": "greetings",
-    "actionIncomplete": false,
-    "parameters": {},
-    "contexts": [],
-    "metadata": {
-      "intentId": "9f41ef7c-82fa-42a7-9a30-49a93e2c14d0",
-      "webhookUsed": "false",
-      "webhookForSlotFillingUsed": "false",
-      "intentName": "greetings"
-    },
-    "fulfillment": {
-      "speech": "Hi Sam! Nice to meet you!",
-      "messages": [
+'data': {
+  'google': {
+    'expectUserResponse': true,
+    'isSsml': false,
+    'noInputPrompts': [],
+    'richResponse': {
+      'items': [
         {
-          "type": 0,
-          "speech": "Hi Sam! Nice to meet you!"
+          'simpleResponse': {
+            'textToSpeech': 'hello',
+            'displayText': 'hi'
+          }
+        }
+      ],
+      'suggestions': [
+        {
+          'title': 'Say this'
+        },
+        {
+          'title': 'or this'
         }
       ]
     },
-    "score": 1
-  },
-  "status": {
-    "code": 200,
-    "errorType": "success"
-  },
-  "sessionId": "4b6a6779-b8ea-4094-b2ed-a302ba201815"
+    'systemIntent': {
+      'intent': 'actions.intent.OPTION',
+      'data': {
+        '@type': 'type.googleapis.com/google.actions.v2.OptionValueSpec',
+        'listSelect': {
+          'items': [
+            {
+              'optionInfo': {
+                'key': 'key1',
+                'synonyms': [
+                  'key one'
+                ]
+              },
+              'title': ''
+            },
+            {
+              'optionInfo': {
+                'key': 'key2',
+                'synonyms': [
+                  'key two'
+                ]
+              },
+              'title': ''
+            }
+          ]
+        }
+      }
+    }
+  }
 }
