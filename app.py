@@ -7,7 +7,7 @@ def wsgi_app(environ, start_response):
     """ Parses the request and sends a reponse """
 
     status = '200 OK'
-    response_headers = [('Content-type', 'text/plain')]
+    response_headers = [('Content-type', 'application/json')]
     start_response(status, response_headers)
     try:
         request_body_size = int(environ.get('CONTENT_LENGTH', 0))
