@@ -3,6 +3,9 @@
 import json
 import src.StupidDatabase as StupidDatabase
 
+def create_context_obj(context_name):
+    return {'name': context_name, 'lifespan': 1}
+
 def extract_intent(request_json):
     return request_json['result']['metadata']['intentName']
 
@@ -37,13 +40,13 @@ def check_balance_fn(request_json):
 
 def greeting_fn(request_json):
     message = 'Oi, tudo bem? Eu posso te ajudar a controlar os seus gastos. Mas para isso, preciso fazer algumas perguntas, pode ser? Vamos lá. Quanto você se dispõe a gastar em um mês?'
-    return {'message': message, 'contextOut': ['waiting-expected-expense']}
+    return {'message': message, 'contextOut': [create_context_obj('waiting-expected-expense')]}
 
 def add_expected_expense_fn(request_json):
     value = extract_value(request_json)
     StupidDatabase.get_database().set_expected_expense(value)
     message = 'Ok! Você pretende gastar ' + str(value) + ' por mês, vou te ajudar a cumprir essa meta. Que dia do mês você recebe seu salário?'
-    return {'message': message, 'contextOut': ['waiting-payday']}
+    return {'message': message, 'contextOut': [create_context_obj('waiting-payday')]}
 
 def add_payday_fn(request_json):
     value = extract_value(request_json)
