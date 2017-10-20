@@ -7,7 +7,7 @@ def extract_intent(request_json):
     return request_json['result']['metadata']['intentName']
 
 def extract_value(request_json):
-    return int(request_json['result']['parameters']['value'][0])
+    return int(request_json['result']['parameters']['value'])
 
 def add_expense_fn(request_json):
     value = extract_value(request_json)
