@@ -25,4 +25,3 @@ if __name__ == '__main__':
     from wsgiref.simple_server import make_server
     HTTPD = make_server('localhost', 80, wsgi_app)
     HTTPD.serve_forever()
-

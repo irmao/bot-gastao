@@ -9,6 +9,9 @@ def extract_intent(request_json):
 def extract_value(request_json):
     return int(request_json['result']['parameters']['value'])
 
+def extract_contexts(request_json):
+    return request_json['result']['contexts']
+
 def add_expense_fn(request_json):
     value = extract_value(request_json)
     StupidDatabase.get_database().add_value(value)
@@ -19,7 +22,7 @@ def add_expense_fn(request_json):
         message = 'Ok! Subtraí ' + str(-value) + ' reais do seu saldo'
     else:
         message = 'Ok! Adicionei ' + str(value) + ' reais no seu saldo'
-    return message
+    return {'message': message, 'contextOut' : []}
 
 def check_balance_fn(request_json):
     value = StupidDatabase.get_database().get_value()
@@ -30,11 +33,30 @@ def check_balance_fn(request_json):
         message = 'Você deve ' + str(-value) + ' reais'
     else:
         message = 'Você possui ' + str(value) + ' reais na sua conta'
-    return message
+    return {'message': message, 'contextOut' : []}
+
+def greeting_fn(request_json):
+    message = 'Oi, tudo bem? Eu posso te ajudar a controlar os seus gastos. Mas para isso, preciso fazer algumas perguntas, pode ser? Vamos lá. Quanto você se dispõe a gastar em um mês?'
+    return {'message': message, 'contextOut': ['waiting-expected-expense']}
+
+def add_expected_expense_fn(request_json):
+    value = extract_value(request_json)
+    StupidDatabase.get_database().set_expected_expense(value)
+    message = 'Ok! Você pretende gastar ' + str(value) + ' por mês, vou te ajudar a cumprir essa meta. Que dia do mês você recebe seu salário?'
+    return {'message': message, 'contextOut': ['waiting-payday']}
+
+def add_payday_fn(request_json):
+    value = extract_value(request_json)
+    StupidDatabase.get_database().set_payday(value)
+    message = 'Você recebe dia ' + str(value) + '. Anotado! Agora quando gastar alguma coisa, por favor me informe. Eu irei te avisar se seu dinheiro estiver acabando e o dia do pagamento estiver longe. E se quiser checar o seu saldo, só perguntar! :)'
+    return {'message': message, 'contextOut': []}
 
 functions = {
     'AddExpense'   : add_expense_fn,
-    'CheckBalance' : check_balance_fn
+    'CheckBalance' : check_balance_fn,
+    'Greeting'     : greeting_fn,
+    'AddExpectedExpense' : add_expected_expense_fn,
+    'AddPayday'    : add_payday_fn
 }
 
 def get_speech(intent, request_json):
