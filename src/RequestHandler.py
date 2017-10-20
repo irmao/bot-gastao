@@ -10,7 +10,7 @@ def handle_request(plain_request_json):
     fsample.close()
     requested_intent = IntentFunctions.extract_intent(request_json)
     speech = IntentFunctions.get_speech(requested_intent, request_json)
-    response_json['speech'] = speech.message
-    response_json['displayText'] = speech.message
-    response_json['contextOut'] = speech.contextOut
+    response_json['speech'] = speech['message']
+    response_json['displayText'] = speech['message']
+    response_json['contextOut'] = speech['contextOut']
     return json.dumps(response_json).encode('utf-8')
