@@ -2,7 +2,7 @@
 
 import json
 import src.StupidDatabase as StupidDatabase
-import src.Classifier as Classifier
+#import src.Classifier as Classifier
 
 def create_context_obj(context_name):
     return {'name': context_name, 'lifespan': 1}
@@ -60,7 +60,8 @@ def add_payday_fn(request_json):
 
 def default_fallback_fn(request_json):
     input_sentence = extract_input_sentence(request_json)
-    message = Classifier.classify(input_sentence)
+    #message = Classifier.classify(input_sentence)
+    message = 'Classifier not imported'
     return {'message': message, 'contextOut': []}
 
 functions = {

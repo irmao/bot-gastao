@@ -1,6 +1,5 @@
 azure==0.8.4
 nltk==3.2.5
 numpy==1.12.1
-scikit-learn
-sklearn
 scipy
+scikit-learn
