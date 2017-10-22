@@ -2,6 +2,7 @@
 
 import json
 import src.StupidDatabase as StupidDatabase
+import src.Classifier as Classifier
 
 def create_context_obj(context_name):
     return {'name': context_name, 'lifespan': 1}
@@ -14,6 +15,9 @@ def extract_value(request_json):
 
 def extract_contexts(request_json):
     return request_json['result']['contexts']
+
+def extract_input_sentence(request_json):
+    return request_json['result']['resolvedQuery']
 
 def add_expense_fn(request_json):
     value = extract_value(request_json)
@@ -54,12 +58,18 @@ def add_payday_fn(request_json):
     message = 'Você recebe dia ' + str(value) + '. Anotado! Agora quando gastar alguma coisa, por favor me informe. Eu irei te avisar se seu dinheiro estiver acabando e o dia do pagamento estiver longe. E se quiser checar o seu saldo, só perguntar! :)'
     return {'message': message, 'contextOut': []}
 
+def default_fallback_fn(request_json):
+    input_sentence = extract_input_sentence(request_json)
+    message = Classifier.classify(input_sentence)
+    return {'message': message, 'contextOut': []}
+
 functions = {
     'AddExpense'   : add_expense_fn,
     'CheckBalance' : check_balance_fn,
     'Greeting'     : greeting_fn,
     'AddExpectedExpense' : add_expected_expense_fn,
-    'AddPayday'    : add_payday_fn
+    'AddPayday'    : add_payday_fn,
+    'Default Fallback Intent' : default_fallback_fn
 }
 
 def get_speech(intent, request_json):

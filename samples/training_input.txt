@@ -1,0 +1,31 @@
+Greeting Boa noite
+Greeting Como vai
+Greeting Hey
+Greeting Boa tarde
+Greeting Olá
+Greeting E ai
+Greeting Bom dia
+Greeting Tudo bem
+Greeting Oi
+
+CheckBalance Balanço
+CheckBalance Conferir saldo
+CheckBalance Quantos reais tenho
+CheckBalance Quantos reais eu tenho
+CheckBalance Quanto tenho na conta
+CheckBalance Dinheiro disponivel
+CheckBalance Saldo
+CheckBalance Qual o meu saldo
+CheckBalance Saldo disponivel
+CheckBalance Checar saldo
+
+AddExpense gostaria de adicionar $value reais
+AddExpense adicionar $value reais
+AddExpense gastei $value
+AddExpense Gastei $value reais
+AddExpense Colocar $value
+AddExpense Criar $value
+AddExpense adicionar $value
+AddExpense nova $value
+AddExpense Inserir $value
+AddExpense novo $value
