@@ -68,13 +68,13 @@ def classify(sentence):
     transformed_sentence = ' '.join(transform_text(sentence))
     data_array = vectorizer.transform([transformed_sentence])
     probabilities = classifier.predict_proba(data_array)[0]
-    peakIndex = numpy.argmax(probabilities)
+    peak_index = numpy.argmax(probabilities)
     print (probabilities)
-    print(probabilities[peakIndex])
+    print(probabilities[peak_index])
     result = None
     # empiric: most results that make sense have probability >= 0.56
-    if (probabilities[peakIndex] >= 0.56):
-        result = classifier.classes_[peakIndex]
+    if probabilities[peak_index] >= 0.56:
+        result = classifier.classes_[peak_index]
     return result
     
 load_classifier()

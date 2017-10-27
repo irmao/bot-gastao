@@ -7,6 +7,10 @@ Greeting E ai
 Greeting Bom dia
 Greeting Tudo bem
 Greeting Oi
+Greeting Fala
+Greeting Fala ae
+Greeting Fala ai
+Greeting Alo
 
 CheckBalance Balanço
 CheckBalance Conferir saldo
@@ -18,6 +22,9 @@ CheckBalance Saldo
 CheckBalance Qual o meu saldo
 CheckBalance Saldo disponivel
 CheckBalance Checar saldo
+CheckBalance Qual é meu saldo
+CheckBalance Me fale quanto eu tenho na conta
+CheckBalance Me fale meu saldo
 
 AddExpense gostaria de adicionar $value reais
 AddExpense adicionar $value reais
